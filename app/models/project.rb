@@ -1,6 +1,6 @@
 class Project < ApplicationRecord
-  has_many :sections
-  has_many :tasks, as: :taskable
+  has_many :sections, dependent: :destroy
+  has_many :tasks, as: :taskable, dependent: :destroy
 
   validates :title, presence: true
 
