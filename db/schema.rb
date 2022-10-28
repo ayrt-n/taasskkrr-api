@@ -41,4 +41,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_27_165500) do
     t.index ["taskable_type", "taskable_id"], name: "index_tasks_on_taskable"
   end
 
+  add_foreign_key "sections", "projects"
 end
