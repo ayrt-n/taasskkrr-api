@@ -13,7 +13,7 @@ module Api
         if @project.save
           render json: @project
         else
-          # Handle error
+          render json: @project.errors.full_messages, status: :unprocessable_entity
         end
       end
 
