@@ -4,7 +4,7 @@ module Api
       before_action :set_task_parent, only: %i[create]
 
       def create
-        @task = @parent.tasks.new(task_params)
+        @task = @tasks.new(task_params)
 
         if @task.save
           render json: @task
@@ -36,15 +36,15 @@ module Api
       private
 
       def set_task_parent
-        if params[:project_id].present?
-          @parent = Project.find(params[:project_id])
-        elsif params[:section_id].present?
-          @parent = Section.find(params[:section_id])
-        elsif params[:task_id].present?
-          @parent = Task.find(params[:task_id])
-        else
-          # TODO: What should be done in case of no param?
-        end
+        @tasks = if params[:project_id].present?
+                   Project.find(params[:project_id]).tasks
+                 elsif params[:section_id].present?
+                   Section.find(params[:section_id]).tasks
+                 elsif params[:task_id].present?
+                   Task.find(params[:task_id]).sub_tasks
+                 else
+                   # Handle no params?
+                 end
       end
 
       def task_params
