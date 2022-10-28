@@ -13,7 +13,27 @@ module Api
         if @project.save
           render json: @project
         else
-          render json: @project.errors.full_messages, status: :unprocessable_entity
+          render json: { errors: @project.errors.full_messages }, status: :unprocessable_entity
+        end
+      end
+
+      def update
+        @project = Project.find(params[:id])
+
+        if @project.update(project_params)
+          render json: @project
+        else
+          render json: { errors: @project.errors.full_messages }, status: :unprocessable_entity
+        end
+      end
+
+      def destroy
+        @project = Project.find(params[:id])
+
+        if @project.destroy
+          render @project
+        else
+          render json: { errors: @project.errors.full_messages }, status: :unprocessable_entity
         end
       end
 
