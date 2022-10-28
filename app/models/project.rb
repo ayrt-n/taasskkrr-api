@@ -2,6 +2,8 @@ class Project < ApplicationRecord
   has_many :sections
   has_many :tasks, as: :taskable
 
+  validates :title, presence: true
+
   def as_json(options = {})
     super(
       only: %i[id title],
