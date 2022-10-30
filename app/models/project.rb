@@ -4,6 +4,8 @@ class Project < ApplicationRecord
 
   validates :title, presence: true
 
+  scope :include_all_tasks, -> { includes(tasks: [:sub_tasks], sections: { tasks: [:sub_tasks] }) }
+
   def as_json(options = {})
     super(
       only: %i[id title],
