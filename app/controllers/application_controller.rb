@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::API
+  rescue_from ActiveRecord::RecordNotFound, with: :not_found
+
   def render_resource(resource)
     if resource.errors.empty?
       render json: resource
@@ -18,5 +20,14 @@ class ApplicationController < ActionController::API
         }
       ]
     }, status: :bad_request
+  end
+
+  def not_found
+    render json: {
+      'errors': [
+        'status': '404',
+        'title': 'Not Found'
+      ]
+    }, status: 404
   end
 end
