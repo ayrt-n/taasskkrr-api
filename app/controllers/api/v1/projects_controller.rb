@@ -2,7 +2,7 @@ module Api
   module V1
     class ProjectsController < ApplicationController
       def show
-        @project = Project.find(params[:id])
+        @project = Project.include_all_tasks.find(params[:id])
 
         render json: @project
       end
