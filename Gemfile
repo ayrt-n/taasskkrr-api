@@ -52,3 +52,6 @@ gem 'devise-jwt', '~> 0.9.0'
 
 # Use Figaro for ENV variables
 gem 'figaro'
+
+# Allow CORS
+gem 'rack-cors'
