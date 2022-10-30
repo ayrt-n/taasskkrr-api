@@ -55,3 +55,8 @@ gem 'figaro'
 
 # Allow CORS
 gem 'rack-cors'
+
+# RSpec for Testing
+group :development, :test do
+  gem 'rspec-rails', '~> 6.0.0'
+end
