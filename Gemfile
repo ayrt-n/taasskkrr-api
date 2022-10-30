@@ -49,6 +49,7 @@ end
 # Authentication related gems
 gem 'devise', '~> 4.8', '>= 4.8.1'
 gem 'devise-jwt', '~> 0.9.0'
+gem 'warden-jwt_auth', '~> 0.6.0'
 
 # Use Figaro for ENV variables
 gem 'figaro'
