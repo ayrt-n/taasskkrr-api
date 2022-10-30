@@ -8,6 +8,8 @@ class Task < ApplicationRecord
   private
 
   def not_nested_sub_sub_tasks
-    errors.add(:task, "can't be nested within a sub-task") if taskable.taskable_type == 'Task'
+    return unless taskable_type == 'Task' && taskable.taskable_type == 'Task'
+
+    errors.add(:task, "can't be nested within a sub-task")
   end
 end
