@@ -46,3 +46,5 @@ group :development do
   # gem "spring"
 end
 
+# Authentication related gems
+gem 'devise'
