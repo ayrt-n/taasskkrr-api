@@ -47,4 +47,5 @@ group :development do
 end
 
 # Authentication related gems
-gem 'devise'
+gem 'devise', '~> 4.8', '>= 4.8.1'
+gem 'devise-jwt', '~> 0.9.0'
