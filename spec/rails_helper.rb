@@ -63,4 +63,5 @@ RSpec.configure do |config|
 
   config.include UserHelpers
   config.include ApiHelpers
+  config.include ProjectHelpers
 end
