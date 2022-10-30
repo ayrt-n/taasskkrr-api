@@ -1,6 +1,8 @@
 module Api
   module V1
     class ProjectsController < ApplicationController
+      before_action :authenticate_user!
+
       def show
         @project = Project.include_all_tasks.find(params[:id])
 
