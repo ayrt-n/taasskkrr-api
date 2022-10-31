@@ -1,8 +1,8 @@
 module Api
   module V1
     class TasksController < ApplicationController
-      before_action :set_task_parent, only: %i[create]
       before_action :authenticate_user!
+      before_action :set_task_parent, only: %i[create]
 
       def index
         @tasks = current_user.tasks.order(:due_date)
@@ -10,33 +10,23 @@ module Api
       end
 
       def create
-        @task = @tasks.new(task_params)
+        @task = @tasks.create(task_params)
 
-        if @task.save
-          render json: @task
-        else
-          render json: { errors: @task.errors.full_messages }, status: :unprocessable_entity
-        end
+        render_resource(@task)
       end
 
       def update
         @task = Task.find(params[:id])
+        @task.update(task_params)
 
-        if @task.update(task_params)
-          render json: @task
-        else
-          render json: { errors: @task.errors.full_messages }, status: :unprocessable_entity
-        end
+        render_resource(@task)
       end
 
       def destroy
         @task = Task.find(params[:id])
+        @task.destroy
 
-        if @task.destroy
-          render json: @task
-        else
-          render json: { errors: @task.errors.full_messages }, status: :unprocessable_entity
-        end
+        render_resource(@task)
       end
 
       private
@@ -46,15 +36,13 @@ module Api
                    Project.find(params[:project_id]).tasks
                  elsif params[:section_id].present?
                    Section.find(params[:section_id]).tasks
-                 elsif params[:task_id].present?
-                   Task.find(params[:task_id]).sub_tasks
                  else
                    # Handle no params?
                  end
       end
 
       def task_params
-        params.require(:task).permit(:title, :description, :priority, :due_date)
+        params.require(:task).permit(:title, :description, :priority, :due_date).merge(user: current_user)
       end
     end
   end
