@@ -13,12 +13,12 @@ class ApplicationController < ActionController::API
     render json: {
       errors: [
         {
-          status: '400',
-          title: 'Bad Request',
+          status: '422',
+          title: 'Unprocessable Entity',
           details: resource.errors
         }
       ]
-    }, status: :bad_request
+    }, status: :unprocessable_entity
   end
 
   def not_found
@@ -27,6 +27,6 @@ class ApplicationController < ActionController::API
         status: '404',
         title: 'Not Found'
       ]
-    }, status: 404
+    }, status: :not_found
   end
 end
