@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::SessionsController, type: :request do
-  let(:user) { create_user }
+  let(:user) { create(:user) }
   let(:login_url) { '/api/v1/login' }
   let(:logout_url) { '/api/v1/logout' }
 
