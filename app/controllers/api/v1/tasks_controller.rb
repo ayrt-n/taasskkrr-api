@@ -2,6 +2,12 @@ module Api
   module V1
     class TasksController < ApplicationController
       before_action :set_task_parent, only: %i[create]
+      before_action :authenticate_user!
+
+      def index
+        @tasks = current_user.tasks.order(:due_date)
+        render json: { tasks: @tasks }
+      end
 
       def create
         @task = @tasks.new(task_params)
