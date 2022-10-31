@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::ProjectsController, type: :request do
-  let(:user) { create_user }
-  let(:project) { create_project }
+  let(:user) { create(:user) }
+  let(:project) { create(:project, user: user) }
 
   context 'When fetching a project' do
     before do
