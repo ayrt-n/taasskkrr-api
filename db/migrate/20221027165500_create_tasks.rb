@@ -5,7 +5,7 @@ class CreateTasks < ActiveRecord::Migration[7.0]
       t.text :description
       t.integer :priority, default: 0
       t.date :due_date
-      t.integer :completed, default: 0
+      t.integer :status, default: 0
       t.references :taskable, polymorphic: true
 
       t.timestamps

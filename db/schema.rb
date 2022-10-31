@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_30_134201) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_30_174140) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,6 +24,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_30_134201) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
   create_table "sections", force: :cascade do |t|
@@ -39,12 +41,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_30_134201) do
     t.text "description"
     t.integer "priority", default: 0
     t.date "due_date"
-    t.integer "completed", default: 0
+    t.integer "status", default: 0
     t.string "taskable_type"
     t.bigint "taskable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["taskable_type", "taskable_id"], name: "index_tasks_on_taskable"
+    t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -59,5 +63,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_30_134201) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "projects", "users"
   add_foreign_key "sections", "projects"
+  add_foreign_key "tasks", "users"
 end
