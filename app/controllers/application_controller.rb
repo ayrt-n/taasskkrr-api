@@ -15,8 +15,7 @@ class ApplicationController < ActionController::API
         {
           status: '400',
           title: 'Bad Request',
-          detail: resource.errors,
-          code: '100'
+          details: resource.errors
         }
       ]
     }, status: :bad_request
@@ -24,9 +23,9 @@ class ApplicationController < ActionController::API
 
   def not_found
     render json: {
-      'errors': [
-        'status': '404',
-        'title': 'Not Found'
+      errors: [
+        status: '404',
+        title: 'Not Found'
       ]
     }, status: 404
   end
