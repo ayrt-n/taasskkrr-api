@@ -3,8 +3,9 @@ require 'rails_helper'
 RSpec.describe Api::V1::ProjectsController, type: :request do
   let(:user) { create(:user) }
   let(:project) { create(:project, user: user) }
+  let(:unauthorized_user) { create(:user) }
 
-  context 'When fetching a project' do
+  context 'When fetching a project that belongs to the user' do
     before do
       login_with_api(user)
       get "/api/v1/projects/#{project.id}", headers: {
@@ -16,10 +17,23 @@ RSpec.describe Api::V1::ProjectsController, type: :request do
       expect(response.status).to eq(200)
     end
 
-    it 'returns the user' do
+    it 'returns the project' do
       data = json
       expect(data['id']).to eq(project.id)
       expect(data['title']).to eq(project.title)
+    end
+  end
+
+  context 'When fetching a project that does not belong to the user' do
+    before do
+      login_with_api(unauthorized_user)
+      get "/api/v1/projects/#{project.id}", headers: {
+        'Authorization': response.headers['Authorization']
+      }
+    end
+
+    it 'returns 401' do
+      expect(response.status).to eq(401)
     end
   end
 
