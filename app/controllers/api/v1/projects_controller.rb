@@ -6,36 +6,37 @@ module Api
       def show
         @project = Project.include_all_tasks.find(params[:id])
 
-        render json: @project
+        if @project.user == current_user
+          render json: @project
+        else
+          access_denied
+        end
       end
 
       def create
-        @project = Project.new(project_params)
-
-        if @project.save
-          render json: @project
-        else
-          render json: { errors: @project.errors.full_messages }, status: :unprocessable_entity
-        end
+        @project = current_user.projects.create(project_params)
+        render_resource(@project)
       end
 
       def update
         @project = Project.find(params[:id])
 
-        if @project.update(project_params)
-          render json: @project
+        if @project.user == current_user
+          @project.update(project_params)
+          render_resource(@project)
         else
-          render json: { errors: @project.errors.full_messages }, status: :unprocessable_entity
+          access_denied
         end
       end
 
       def destroy
         @project = Project.find(params[:id])
 
-        if @project.destroy
-          render @project
+        if @project.user == current_user
+          @project.destroy
+          render_resource(@project)
         else
-          render json: { errors: @project.errors.full_messages }, status: :unprocessable_entity
+          access_denied
         end
       end
 

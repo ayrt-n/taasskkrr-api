@@ -1,34 +1,38 @@
 module Api
   module V1
     class SectionsController < ApplicationController
+      before_action :authenticate_user!
+
       def create
         @project = Project.find(params[:project_id])
-        @section = @project.sections.new(section_params)
 
-        if @section.save
-          render json: @section
+        if @project.user == current_user
+          @section = @project.sections.create(section_params)
+          render_resource(@section)
         else
-          render json: { errors: @section.errors.full_messages }, status: :unprocessable_entity
+          access_denied
         end
       end
 
       def update
         @section = Section.find(params[:id])
 
-        if @section.update(section_params)
-          render json: @section
+        if @section.user == current_user
+          @section.update(section_params)
+          render_resource(@section)
         else
-          render json: { errors: @section.errors.full_messages }, status: :unprocessable_entity
+          access_denied
         end
       end
 
       def destroy
         @section = Section.find(params[:id])
 
-        if @section.destroy
-          render json: @section
+        if @section.user == current_user
+          @section.destroy
+          render_resource(@section)
         else
-          render json: { errors: @section.errors.full_messages }, status: :unprocessable_entity
+          access_denied
         end
       end
 
