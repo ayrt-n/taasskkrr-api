@@ -23,9 +23,7 @@ Rails.application.routes.draw do
         resources :tasks, only: %i[create]
       end
 
-      resources :tasks, only: %i[index update destroy] do
-        resource :tasks, only: %i[create]
-      end
+      resources :tasks, only: %i[index update destroy]
     end
   end
 end
