@@ -29,4 +29,13 @@ class ApplicationController < ActionController::API
       ]
     }, status: :not_found
   end
+
+  def access_denied
+    render json: {
+      errors: [
+        status: '401',
+        title: 'Access denied'
+      ]
+    }, status: :unauthorized
+  end
 end
