@@ -20,9 +20,8 @@ RSpec.describe Api::V1::RegistrationsController, type: :request do
     end
 
     it 'returns the user email' do
-      data = json
-      expect(data).to have_key('email')
-      expect(data['email']).to eq(user.email)
+      expect(json).to have_key('email')
+      expect(json['email']).to eq(user.email)
     end
   end
 
