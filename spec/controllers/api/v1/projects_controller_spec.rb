@@ -18,9 +18,8 @@ RSpec.describe Api::V1::ProjectsController, type: :request do
     end
 
     it 'returns the project' do
-      data = json
-      expect(data['id']).to eq(project.id)
-      expect(data['title']).to eq(project.title)
+      expect(json['id']).to eq(project.id)
+      expect(json['title']).to eq(project.title)
     end
   end
 
