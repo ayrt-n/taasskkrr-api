@@ -10,35 +10,44 @@ module Api
       end
 
       def create
-        @task = @tasks.create(task_params)
-
-        render_resource(@task)
+        if @taskable.user == current_user
+          @task = @taskable.tasks.create(task_params)
+          render_resource(@task)
+        else
+          access_denied
+        end
       end
 
       def update
         @task = Task.find(params[:id])
-        @task.update(task_params)
 
-        render_resource(@task)
+        if @task.user == current_user
+          @task.update(task_params)
+          render_resource(@task)
+        else
+          access_denied
+        end
       end
 
       def destroy
         @task = Task.find(params[:id])
-        @task.destroy
 
-        render_resource(@task)
+        if @task.user == current_user
+          @task.destroy
+          render_resource(@task)
+        else
+          access_denied
+        end
       end
 
       private
 
       def set_task_parent
-        @tasks = if params[:project_id].present?
-                   Project.find(params[:project_id]).tasks
-                 elsif params[:section_id].present?
-                   Section.find(params[:section_id]).tasks
-                 else
-                   # Handle no params?
-                 end
+        @taskable = if params[:project_id].present?
+                      Project.find(params[:project_id])
+                    elsif params[:section_id].present?
+                      Section.find(params[:section_id])
+                    end
       end
 
       def task_params
