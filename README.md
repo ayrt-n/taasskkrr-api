@@ -1,24 +1,5 @@
-# README
+# To-Do List Rails API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Work in progress!
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Backend JSON Rails API for a to-do list web application
