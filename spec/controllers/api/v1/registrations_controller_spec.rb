@@ -35,7 +35,7 @@ RSpec.describe Api::V1::RegistrationsController, type: :request do
       }
     end
 
-    it 'returns 400' do
+    it 'returns 422' do
       expect(response.status).to eq(422)
     end
   end
