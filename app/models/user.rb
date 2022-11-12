@@ -5,4 +5,11 @@ class User < ApplicationRecord
 
   has_many :tasks, dependent: :destroy
   has_many :projects, dependent: :destroy
+
+  def jwt_payload
+    {
+      id: id,
+      email: email
+    }
+  end
 end
