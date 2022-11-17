@@ -3,6 +3,11 @@ module Api
     class ProjectsController < ApplicationController
       before_action :authenticate_user!
 
+      def index
+        @projects = current_user.projects
+        render json: @projects
+      end
+
       def show
         @project = Project.include_all_tasks.find(params[:id])
 
