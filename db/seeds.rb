@@ -1,10 +1,31 @@
 user1 = User.create(
-  email: 'example@example.com',
+  email: 'tester1@gmail.com',
   password: 'password',
   password_confirmation: 'password'
 )
 
 work_project = user1.projects.create(title: 'Work')
-work_project.tasks.create(title: 'General work task', user: user1)
+work_project.tasks.create(title: 'General work task',
+                          description: 'Just a general work task that needs to be done',
+                          due_date: Date.current + 1.week,
+                          user: user1)
+work_project.tasks.create(title: 'General work task',
+                          description: 'Just a general work task that needs to be done',
+                          due_date: Date.current + 1.week,
+                          status: 1,
+                          priority: 2,
+                          user: user1)
+work_project.tasks.create(title: 'General work task',
+                          description: 'Just a general work task that needs to be done',
+                          due_date: Date.current + 1.week,
+                          priority: 1,
+                          user: user1)
 work_section = work_project.sections.create(title: 'Work Section')
-work_section.tasks.create(title: 'Work section task', user: user1)
+work_section.tasks.create(title: 'General work section task',
+                          description: 'Just a general work section task as part of the section',
+                          due_date: Date.current + 1.week,
+                          user: user1)
+work_section.tasks.create(title: 'General work section task',
+                          description: 'Just a general work section task as part of the section',
+                          due_date: Date.current + 1.week,
+                          user: user1)
