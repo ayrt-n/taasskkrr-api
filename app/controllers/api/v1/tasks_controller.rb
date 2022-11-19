@@ -51,7 +51,7 @@ module Api
       end
 
       def task_params
-        params.require(:task).permit(:title, :description, :priority, :due_date).merge(user: current_user)
+        params.require(:task).permit(:title, :description, :priority, :due_date, :status).merge(user: current_user)
       end
     end
   end
