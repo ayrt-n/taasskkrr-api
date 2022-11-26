@@ -5,7 +5,14 @@ module Api
       before_action :set_task_parent, only: %i[create]
 
       def index
-        @tasks = current_user.tasks.order(:due_date)
+        @tasks = if params[:upcoming]
+                   current_user.tasks.group_by(&:due_date)
+                 elsif params[:today]
+                   @tasks = current_user.tasks.where('due_date = ?', Date.today)
+                 else
+                   @tasks = current_user.tasks
+                 end
+
         render json: { tasks: @tasks }
       end
 
