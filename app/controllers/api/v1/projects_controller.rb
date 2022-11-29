@@ -12,7 +12,19 @@ module Api
         @project = Project.include_all_tasks.find(params[:id])
 
         if @project.user == current_user
-          render json: @project
+          render json: @project, include: {
+            tasks: {
+              only: %i[id title description priority due_date status]
+            },
+            sections: {
+              include: {
+                tasks: {
+                  only: %i[id title description priority due_date status]
+                }
+              },
+              only: %i[id title]
+            }
+          }
         else
           access_denied
         end
