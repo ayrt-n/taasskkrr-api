@@ -41,7 +41,7 @@ RSpec.describe 'SectionsController#Show', type: :request do
 
     it 'returns 401' do
       expect(response.status).to eq(401)
-      expect(json).to include('errors')
+      expect(json).to include('error')
     end
   end
 
@@ -59,7 +59,7 @@ RSpec.describe 'SectionsController#Show', type: :request do
 
     it 'returns 404' do
       expect(response.status).to eq(404)
-      expect(json).to include('errors')
+      expect(json).to include('error')
     end
   end
 
@@ -74,7 +74,7 @@ RSpec.describe 'SectionsController#Show', type: :request do
 
     it 'returns 401' do
       expect(response.status).to eq(401)
-      # expect(json).to include('errors')
+      expect(json).to include('error')
     end
   end
 end
