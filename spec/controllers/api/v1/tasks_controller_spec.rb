@@ -22,13 +22,9 @@ RSpec.describe 'TasksController#create', type: :request do
       expect(response.status).to eq(200)
     end
 
-    it 'returns the task' do
-      expect(json).to include(*Task.attribute_names)
-    end
-
     it 'adds task to users project' do
       new_task_id = json['id']
-      user_project_tasks = user.projects.first.tasks
+      user_project_tasks = project.tasks
       expect(user_project_tasks.ids).to include(new_task_id)
     end
   end
@@ -49,13 +45,9 @@ RSpec.describe 'TasksController#create', type: :request do
       expect(response.status).to eq(200)
     end
 
-    it 'returns the task' do
-      expect(json).to include(*Task.attribute_names)
-    end
-
     it 'adds task to users project section' do
       new_task_id = json['id']
-      user_section_tasks = user.projects.first.sections.first.tasks
+      user_section_tasks = section.tasks
       expect(user_section_tasks.ids).to include(new_task_id)
     end
   end
@@ -108,7 +100,7 @@ RSpec.describe 'TasksController#create', type: :request do
 
     it 'returns 404' do
       expect(response.status).to eq(404)
-      expect(json).to include('errors')
+      expect(json).to include('error')
     end
   end
 
@@ -126,7 +118,7 @@ RSpec.describe 'TasksController#create', type: :request do
 
     it 'returns 404' do
       expect(response.status).to eq(404)
-      expect(json).to include('errors')
+      expect(json).to include('error')
     end
   end
 
