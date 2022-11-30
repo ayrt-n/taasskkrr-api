@@ -170,7 +170,7 @@ RSpec.describe 'ProjectsController#Destroy', type: :request do
     end
 
     it 'deletes the project' do
-      expect(user.projects).not_to exist
+      expect(user.projects).not_to include(project)
     end
   end
 
