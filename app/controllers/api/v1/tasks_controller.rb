@@ -18,7 +18,14 @@ module Api
 
       def create
         if @taskable.user == current_user
-          @task = @taskable.tasks.create(task_params)
+          @task = Task.create(
+            task_params.merge(
+              {
+                project_id: @project_id,
+                section_id: @section_id
+              }
+            )
+          )
           render_resource(@task)
         else
           access_denied
@@ -50,15 +57,19 @@ module Api
       private
 
       def set_task_parent
-        @taskable = if params[:project_id].present?
-                      Project.find(params[:project_id])
-                    elsif params[:section_id].present?
-                      Section.find(params[:section_id])
-                    end
+        if params[:project_id].present?
+          @taskable = Project.find(params[:project_id])
+          @project_id = params[:project_id]
+          @section_id = nil
+        elsif params[:section_id].present?
+          @taskable = Section.find(params[:section_id])
+          @project_id = @taskable.project.id
+          @section_id = params[:section_id]
+        end
       end
 
       def task_params
-        params.require(:task).permit(:title, :description, :priority, :due_date, :status).merge(user: current_user)
+        params.require(:task).permit(:title, :description, :priority, :due_date, :status)
       end
     end
   end
