@@ -1,5 +1,5 @@
 class Section < ApplicationRecord
-  has_many :tasks, as: :taskable, dependent: :destroy
+  has_many :tasks, dependent: :destroy
   belongs_to :project
 
   delegate :user, to: :project
