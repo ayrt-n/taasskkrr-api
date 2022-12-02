@@ -43,13 +43,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_22_141715) do
     t.integer "priority", default: 0
     t.date "due_date"
     t.integer "status", default: 0
-    t.string "taskable_type"
-    t.bigint "taskable_id"
+    t.bigint "section_id"
+    t.bigint "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.index ["taskable_type", "taskable_id"], name: "index_tasks_on_taskable"
-    t.index ["user_id"], name: "index_tasks_on_user_id"
+    t.index ["project_id"], name: "index_tasks_on_project_id"
+    t.index ["section_id"], name: "index_tasks_on_section_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -66,5 +65,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_22_141715) do
 
   add_foreign_key "projects", "users"
   add_foreign_key "sections", "projects"
-  add_foreign_key "tasks", "users"
+  add_foreign_key "tasks", "projects"
 end
