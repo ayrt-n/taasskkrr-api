@@ -140,7 +140,7 @@ end
 RSpec.describe 'TasksController#update', type: :request do
   let(:user) { create(:user) }
   let(:project) { create(:project, user: user) }
-  let(:task) { create(:task, user: user, taskable: project) }
+  let(:task) { create(:task, project: project) }
   let(:unauthorized_user) { create(:user) }
 
   context 'When user edits task belonging to user' do
@@ -169,7 +169,7 @@ RSpec.describe 'TasksController#update', type: :request do
       expect(task.title).to eq('Updated task')
     end
   end
-  
+
   context 'When user tries to edit task not belonging to user' do
     before do
       login_with_api(unauthorized_user)
@@ -232,7 +232,7 @@ end
 RSpec.describe 'TasksController#destroy', type: :request do
   let(:user) { create(:user) }
   let(:project) { create(:project, user: user) }
-  let(:task) { create(:task, user: user, taskable: project) }
+  let(:task) { create(:task, project: project) }
   let(:unauthorized_user) { create(:user) }
 
   context 'When user deletes project belonging to user' do
