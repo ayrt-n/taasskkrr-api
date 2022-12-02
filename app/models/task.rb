@@ -4,6 +4,8 @@ class Task < ApplicationRecord
 
   validates :title, presence: true
 
+  delegate :user, to: :project
+
   def as_json(_options = {})
     super(
       only: %i[id title description priority due_date status]
