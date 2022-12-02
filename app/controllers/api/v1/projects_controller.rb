@@ -13,7 +13,7 @@ module Api
 
         if @project.user == current_user
           render json: @project, include: {
-            tasks: {
+            project_tasks: {
               only: %i[id title description priority due_date status]
             },
             sections: {
