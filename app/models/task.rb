@@ -1,6 +1,6 @@
 class Task < ApplicationRecord
-  belongs_to :taskable, polymorphic: true
-  belongs_to :user
+  belongs_to :project
+  belongs_to :section, optional: true
 
   validates :title, presence: true
 
