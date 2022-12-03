@@ -6,8 +6,15 @@ class User < ApplicationRecord
   has_many :projects, dependent: :destroy
   has_many :tasks, through: :projects, dependent: :destroy
 
+  # Before create hook to create default inbox project for user on create
   before_create :build_inbox
 
+  # Return default inbox for user - Only one inbox should exist
+  def inbox
+    projects.where(inbox: true).first
+  end
+
+  # Include users id and email in JWT payload sent after authenticating
   def jwt_payload
     {
       id: id,
