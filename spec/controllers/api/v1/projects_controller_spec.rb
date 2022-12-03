@@ -115,6 +115,28 @@ RSpec.describe 'ProjectsController#Update', type: :request do
     end
   end
 
+  context 'When user tries to update default inbox project' do
+    before do
+      login_with_api(user)
+      patch "/api/v1/projects/#{user.inbox.id}", headers: {
+        'Authorization': response.headers['Authorization']
+      }, params: {
+        project: {
+          title: 'Updated Project'
+        }
+      }
+    end
+
+    it 'returns 401' do
+      expect(response.status).to eq(401)
+    end
+
+    it 'does not change the project title' do
+      user.inbox.reload
+      expect(user.inbox.title).to eq('Inbox')
+    end
+  end
+
   context 'When the project is missing' do
     before do
       login_with_api(user)
@@ -188,6 +210,23 @@ RSpec.describe 'ProjectsController#Destroy', type: :request do
 
     it 'does not delete the project' do
       expect(user.projects).to exist
+    end
+  end
+
+  context 'When user tries to delete default inbox project' do
+    before do
+      login_with_api(user)
+      delete "/api/v1/projects/#{user.inbox.id}", headers: {
+        'Authorization': response.headers['Authorization']
+      }
+    end
+
+    it 'returns 401' do
+      expect(response.status).to eq(401)
+    end
+
+    it 'does not delete the project' do
+      expect(user.inbox).not_to be_nil
     end
   end
 
