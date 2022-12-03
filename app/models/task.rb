@@ -6,9 +6,9 @@ class Task < ApplicationRecord
 
   delegate :user, to: :project
 
-  def as_json(_options = {})
-    super(
-      only: %i[id title description priority due_date status project_id section_id]
-    )
+  def as_json(options = {})
+    # Set options :only as default if not supplied
+    options[:only] = %i[id title description priority due_date status project_id section_id] unless options[:only]
+    super(options)
   end
 end
