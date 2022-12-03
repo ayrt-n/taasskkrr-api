@@ -8,7 +8,7 @@ class Task < ApplicationRecord
 
   def as_json(_options = {})
     super(
-      only: %i[id title description priority due_date status]
+      only: %i[id title description priority due_date status project_id section_id]
     )
   end
 end
