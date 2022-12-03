@@ -1,7 +1,7 @@
 class Project < ApplicationRecord
   belongs_to :user
-  has_many :sections, dependent: :destroy
-  has_many :tasks, dependent: :destroy
+  has_many :sections, dependent: :delete_all
+  has_many :tasks, dependent: :delete_all
   has_many :project_tasks, -> { where section_id: nil }, class_name: 'Task'
 
   validates :title, presence: true
