@@ -38,7 +38,9 @@ module Api
       def update
         @project = Project.find(params[:id])
 
-        if @project.user == current_user
+        # Make sure that the project belongs to the user and is NOT the inbox
+        # Inbox is default project automatically created for the user and cannot be changed
+        if @project.user == current_user && !@project.inbox
           @project.update(project_params)
           render_resource(@project)
         else
@@ -49,7 +51,9 @@ module Api
       def destroy
         @project = Project.find(params[:id])
 
-        if @project.user == current_user
+        # Make sure that the project belongs to the user and is NOT the inbox
+        # Inbox is default project automatically created for the user and cannot be changed
+        if @project.user == current_user && !@project.inbox
           @project.destroy
           render_resource(@project)
         else
