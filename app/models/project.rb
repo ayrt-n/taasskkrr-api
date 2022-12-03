@@ -6,7 +6,7 @@ class Project < ApplicationRecord
 
   validates :title, presence: true
 
-  scope :include_all_tasks, -> { includes(:tasks, sections: :tasks) }
+  scope :include_all_tasks, -> { includes(:project_tasks, sections: :tasks) }
 
   def as_json(options = {})
     # Set options :only as default if not supplied
