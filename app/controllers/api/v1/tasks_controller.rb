@@ -57,15 +57,17 @@ module Api
       private
 
       def set_task_parent
-        if params[:project_id].present?
-          @taskable = Project.find(params[:project_id])
-          @project_id = params[:project_id]
-          @section_id = nil
-        elsif params[:section_id].present?
-          @taskable = Section.find(params[:section_id])
-          @project_id = @taskable.project.id
-          @section_id = params[:section_id]
-        end
+        # User must provide either project_id or section_id to create a new task
+        # If project_id provided, find Project, otherwise find Section
+        @taskable = if params[:project_id].present?
+                      Project.find(params[:project_id])
+                    else
+                      Section.find(params[:section_id])
+                    end
+
+        # Set project_id (required) and section_id (optional)
+        @project_id = params[:project_id] || @taskable.project.id
+        @section_id = params[:section_id]
       end
 
       def task_params
