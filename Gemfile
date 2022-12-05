@@ -64,3 +64,6 @@ group :development, :test do
   gem 'faker'
   gem 'rspec-rails', '~> 6.0.0'
 end
+
+# LetterOpener for testing mailers in development
+gem 'letter_opener', group: :development
