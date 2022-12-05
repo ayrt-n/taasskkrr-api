@@ -5,11 +5,13 @@ Rails.application.routes.draw do
              path_names: {
                sign_in: 'api/v1/login',
                sign_out: 'api/v1/logout',
-               registration: 'api/v1/signup'
+               registration: 'api/v1/signup',
+               confirmation: 'api/v1/confirmation'
              },
              controllers: {
                sessions: 'api/v1/sessions',
-               registrations: 'api/v1/registrations'
+               registrations: 'api/v1/registrations',
+               confirmations: 'api/v1/confirmations'
              }
 
   namespace :api, defaults: { format: :json } do
