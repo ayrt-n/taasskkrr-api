@@ -6,12 +6,14 @@ Rails.application.routes.draw do
                sign_in: 'api/v1/login',
                sign_out: 'api/v1/logout',
                registration: 'api/v1/signup',
-               confirmation: 'api/v1/confirmation'
+               confirmation: 'api/v1/confirmation',
+               password: 'api/v1/password'
              },
              controllers: {
                sessions: 'api/v1/sessions',
                registrations: 'api/v1/registrations',
-               confirmations: 'api/v1/confirmations'
+               confirmations: 'api/v1/confirmations',
+               passwords: 'api/v1/passwords'
              }
 
   namespace :api, defaults: { format: :json } do
