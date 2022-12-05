@@ -39,7 +39,11 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   # Devise defaults
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3001 }
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  # Set config for LetterOpener gem
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
