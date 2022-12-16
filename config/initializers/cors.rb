@@ -8,7 +8,7 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     if Rails.env.development?
-      origins 'https://localhost:3000'
+      origins 'http://localhost:3000'
     else
       origins 'https://ayrt-n.github.io'
     end
