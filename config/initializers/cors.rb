@@ -7,7 +7,11 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'http://localhost:3000'
+    if Rails.env.development?
+      origins 'https://localhost:3000'
+    else
+      origins 'https://ayrt-n.github.io'
+    end
 
     resource '/api/v1/*',
       headers: :any,
