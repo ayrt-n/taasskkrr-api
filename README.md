@@ -29,7 +29,7 @@ Once you have this repo cloned , you can start up the application by running:
 
 And then starting up the React frontend by following the instructions within the associated repo.
 
-## Takeaways
+## Overview
 This project provided a solid opportunity to combine everything that I have learned through The Odin Project. Generally, it was a great opportunity to start building full stack web applications which utilized a Rails backend and React frontend to build beautiful, responsive, and interactive user interfaces with a persistent backend API.
 
 From a Rails API point of view the project offered a solid refresher on a number of Rails specific concepts and experience building a Rails API-only application and then integrating that functionality with a separate React frontend user interface.
