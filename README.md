@@ -34,6 +34,7 @@ This project provided a solid opportunity to combine everything that I have lear
 
 From a Rails API point of view the project offered a solid refresher on a number of Rails specific concepts and experience building a Rails API-only application and then integrating that functionality with a separate React frontend user interface.
 
+### Database
 The database currently consists of five separate but related tables as follows:
 
 ![data schema](/public/db-schema.png)
@@ -65,6 +66,7 @@ JWTDenylist:
 - The JWT Denylist is used to keep track of JWT tokens which are expired/revoked
 - The denylist consists of the JTI, which uniquely identifies the JWT token, and an expired_at variable used to help clean up stale tokens
 
+### Misc
 Some interesting features and lessons learned include:
 - JWT Authentication/Authorization in API applications: The backend uses the Devise and devise-jwt gem to implement JWT authentication and authorization. 
 
