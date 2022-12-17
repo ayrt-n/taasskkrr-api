@@ -68,5 +68,5 @@ JWTDenylist:
 
 ### Misc
 Some interesting features and lessons learned include:
-- JWT Authentication/Authorization in API applications: The backend uses the Devise and devise-jwt gem to implement JWT authentication and authorization. Once a user is successfully authenticated through a login attempt, the sessions controller will return a JWT with header and payload including the user id, email, and JWT expiration, as well as a signature used to validate the JWT (created by base-64 encoding the header and payload, concatenating the two together, and then running the result through a cryptographic algorithm (HMAC-SHA256) with a secret key
+- JWT Authentication/Authorization in API applications: The backend uses the Devise and devise-jwt gem to implement JWT authentication and authorization. Once a user is successfully authenticated through a login attempt, the sessions controller will return a JWT with header and payload including the user id, email, and JWT expiration, as well as a signature used to validate the JWT (created by base-64 encoding the header and payload, concatenating the two together, and then running the result through a cryptographic algorithm (HMAC-SHA256) with a secret key. The JWT is then included within the header of all API requests and used to validate the user request
 
