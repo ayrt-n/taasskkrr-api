@@ -16,7 +16,7 @@ The best way to view the project is live on Github at https://ayrt-n.github.io/t
 
 Please note that it may take 30-45 seconds for the Heroku dyno to start up if the application has been inactive for awhile.
 
-![homepage](/src/assets/images/hero-main.png)
+![homepage](/public/homepage.png)
 
 ### Using Local Machine
 If you would like to run the web app on your local machine you will first need to install [Ruby](https://guides.rubyonrails.org/v5.0/getting_started.html), [Rails](https://guides.rubyonrails.org/v5.0/getting_started.html), and [PostgreSQL](https://medium.com/geekculture/postgresql-rails-and-macos-16248ddcc8ba).
