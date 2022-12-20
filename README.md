@@ -10,7 +10,7 @@ The application uses Json Web Token (JWT) and a custom implementation of JWT-Dev
 This repo is for the Rails backend portion of the project.
 
 ## Set up
-### Using Web Browser
+### Using Web Browser (Recommended)
 
 The best way to view the project is live on Github at https://ayrt-n.github.io/to-do-list-client/
 
