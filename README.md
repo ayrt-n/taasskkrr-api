@@ -1,7 +1,7 @@
 # To-Do List Rails API
 
 ## Summary
-After reaching the end of the React section of The Odin Project (https://www.theodinproject.com/), I wanted to take an old JavaScript project that I had worked on and update it to use a React frontend and Rails JSON API backend (https://github.com/ayrt-n/to-do-list-api).
+After reaching the end of the React section of The Odin Project (https://www.theodinproject.com/), I wanted to take an old JavaScript project that I had worked on and update it to use a Rails JSON API backend and React frontend (https://github.com/ayrt-n/to-do-list-client).
 
 The application is a to-do list web application, which allows users to create, read, update, and delete projects and associated to-do lists. Through the web application, users can view tasks associated with projects, view all tasks for the current day, or view all upcoming tasks. 
 
