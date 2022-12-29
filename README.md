@@ -24,9 +24,11 @@ If you would like to run the web app on your local machine you will first need t
 With all of those installed, you will need to clone this repo along with the frontend (https://github.com/ayrt-n/to-do-list-client).
 
 Once you have this repo cloned, navigate to the root directory and create and set up the database by running
+
 ```rails db:create db:migrate```
 
 Once that is finished, you can start the backend API server by running
+
 ```rails s -p 3001```
 
 With the backend going, you can either start making API requests using a service like Postman or curl in the terminal, or start up the React frontend by following the instructions within the associated repo (https://github.com/ayrt-n/to-do-list-client).
