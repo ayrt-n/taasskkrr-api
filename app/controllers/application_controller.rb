@@ -21,11 +21,11 @@ class ApplicationController < ActionController::API
 
   def not_found
     render json: {
-      error: [
+      error: {
         status: '404',
         title: 'Not Found',
         details: 'The requested page could not be found.'
-      ]
+      }
     }, status: :not_found
   end
 
