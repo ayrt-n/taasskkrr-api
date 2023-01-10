@@ -33,9 +33,9 @@ Rails.application.routes.draw do
 
       # Task-Specific Routes
       resources :tasks, only: %i[index update destroy]
+
+      # Route to ping heroku server to wake up
+      get '/ping', to: 'pings#ping'
     end
   end
-
-  # Route to ping heroku server to wake up
-  get '/ping', to: 'pings#ping', defaults: { format: :json }
 end
