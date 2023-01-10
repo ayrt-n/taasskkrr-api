@@ -1,7 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe "Pings", type: :request do
-  describe "GET /index" do
-    pending "add some examples (or delete) #{__FILE__}"
+RSpec.describe 'Pings#Ping', type: :request do
+  it 'returns 200' do
+    get '/api/v1/ping'
+    expect(response.status).to eq(200)
   end
 end
