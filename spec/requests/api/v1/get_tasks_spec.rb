@@ -11,7 +11,7 @@ RSpec.describe '/GET Tasks', type: :request do
 
       login_with_api(user)
       get '/api/v1/tasks', headers: {
-        'Authorization': response.headers['Authorization']
+        Authorization: response.headers['Authorization']
       }
     end
 

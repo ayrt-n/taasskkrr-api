@@ -10,7 +10,7 @@ RSpec.describe '/POST tasks', type: :request do
     before do
       login_with_api(user)
       post "/api/v1/projects/#{project.id}/tasks", headers: {
-        'Authorization': response.headers['Authorization']
+        Authorization: response.headers['Authorization']
       }, params: {
         task: {
           title: 'Test Task'
@@ -33,7 +33,7 @@ RSpec.describe '/POST tasks', type: :request do
     before do
       login_with_api(user)
       post "/api/v1/sections/#{section.id}/tasks", headers: {
-        'Authorization': response.headers['Authorization']
+        Authorization: response.headers['Authorization']
       }, params: {
         task: {
           title: 'Test Task'
@@ -56,7 +56,7 @@ RSpec.describe '/POST tasks', type: :request do
     before do
       login_with_api(unauthorized_user)
       post "/api/v1/projects/#{project.id}/tasks", headers: {
-        'Authorization': response.headers['Authorization']
+        Authorization: response.headers['Authorization']
       }, params: {
         task: {
           title: 'Test Task'
@@ -73,7 +73,7 @@ RSpec.describe '/POST tasks', type: :request do
     before do
       login_with_api(unauthorized_user)
       post "/api/v1/sections/#{section.id}/tasks", headers: {
-        'Authorization': response.headers['Authorization']
+        Authorization: response.headers['Authorization']
       }, params: {
         task: {
           title: 'Test Task'
@@ -90,7 +90,7 @@ RSpec.describe '/POST tasks', type: :request do
     before do
       login_with_api(user)
       post '/api/v1/projects/blank/tasks', headers: {
-        'Authorization': response.headers['Authorization']
+        Authorization: response.headers['Authorization']
       }, params: {
         section: {
           title: 'Test Task'
@@ -108,7 +108,7 @@ RSpec.describe '/POST tasks', type: :request do
     before do
       login_with_api(user)
       post '/api/v1/sections/blank/tasks', headers: {
-        'Authorization': response.headers['Authorization']
+        Authorization: response.headers['Authorization']
       }, params: {
         section: {
           title: 'Test Task'

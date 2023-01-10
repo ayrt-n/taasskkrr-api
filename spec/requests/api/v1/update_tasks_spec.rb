@@ -10,7 +10,7 @@ RSpec.describe '/PATCH Tasks', type: :request do
     before do
       login_with_api(user)
       patch "/api/v1/tasks/#{task.id}", headers: {
-        'Authorization': response.headers['Authorization']
+        Authorization: response.headers['Authorization']
       }, params: {
         task: {
           title: 'Updated task'
@@ -37,7 +37,7 @@ RSpec.describe '/PATCH Tasks', type: :request do
     before do
       login_with_api(unauthorized_user)
       patch "/api/v1/tasks/#{task.id}", headers: {
-        'Authorization': response.headers['Authorization']
+        Authorization: response.headers['Authorization']
       }, params: {
         task: {
           title: 'Updated task'
@@ -59,7 +59,7 @@ RSpec.describe '/PATCH Tasks', type: :request do
     before do
       login_with_api(user)
       patch '/api/v1/tasks/blank', headers: {
-        'Authorization': response.headers['Authorization']
+        Authorization: response.headers['Authorization']
       }, params: {
         task: {
           title: 'Updated task'

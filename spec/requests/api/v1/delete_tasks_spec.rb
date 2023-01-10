@@ -10,7 +10,7 @@ RSpec.describe '/DELETE Tasks', type: :request do
     before do
       login_with_api(user)
       delete "/api/v1/tasks/#{task.id}", headers: {
-        'Authorization': response.headers['Authorization']
+        Authorization: response.headers['Authorization']
       }
     end
 
@@ -27,7 +27,7 @@ RSpec.describe '/DELETE Tasks', type: :request do
     before do
       login_with_api(unauthorized_user)
       delete "/api/v1/tasks/#{task.id}", headers: {
-        'Authorization': response.headers['Authorization']
+        Authorization: response.headers['Authorization']
       }
     end
 
