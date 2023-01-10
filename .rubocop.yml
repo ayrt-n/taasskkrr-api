@@ -1,0 +1,10 @@
+# .rubocop.yml
+AllCops:
+  NewCops: 'enable'
+
+Metrics/BlockLength:
+  Enabled: true
+  Exclude:
+    - 'Rakefile'
+    - '**/*.rake'
+    - 'spec/**/*.rb'
