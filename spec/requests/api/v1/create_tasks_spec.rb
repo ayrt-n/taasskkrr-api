@@ -6,7 +6,7 @@ RSpec.describe '/POST tasks', type: :request do
   let(:section) { create(:section, project: project) }
   let(:unauthorized_user) { create(:user) }
 
-  context 'When user creates task for project that belongs to them' do
+  context 'when user creates task for project that belongs to them' do
     before do
       login_with_api(user)
       post "/api/v1/projects/#{project.id}/tasks", headers: {
@@ -29,7 +29,28 @@ RSpec.describe '/POST tasks', type: :request do
     end
   end
 
-  context 'When user tries to create task for project that does not belong to them' do
+  context 'when invalid parameters provided' do
+    before do
+      login_with_api(user)
+      post "/api/v1/projects/#{project.id}/tasks", headers: {
+        Authorization: response.headers['Authorization']
+      }, params: {
+        task: {
+          title: ''
+        }
+      }
+    end
+
+    it 'provides a useful error message' do
+      expect(json['error']['details'][0]).to eq("Title can't be blank")
+    end
+
+    it 'returns 422' do
+      expect(response.status).to eq(422)
+    end
+  end
+
+  context 'when user tries to create task for project that does not belong to them' do
     before do
       login_with_api(unauthorized_user)
       post "/api/v1/projects/#{project.id}/tasks", headers: {
@@ -46,7 +67,7 @@ RSpec.describe '/POST tasks', type: :request do
     end
   end
 
-  context 'When user tries to create task for section that does not belong to them' do
+  context 'when user tries to create task for section that does not belong to them' do
     before do
       login_with_api(unauthorized_user)
       post "/api/v1/sections/#{section.id}/tasks", headers: {
@@ -63,7 +84,7 @@ RSpec.describe '/POST tasks', type: :request do
     end
   end
 
-  context 'When user tries to create task for project that is missing' do
+  context 'when user tries to create task for project that is missing' do
     before do
       login_with_api(user)
       post '/api/v1/projects/blank/tasks', headers: {
@@ -81,7 +102,7 @@ RSpec.describe '/POST tasks', type: :request do
     end
   end
 
-  context 'When user tries to create task for section that is missing' do
+  context 'when user tries to create task for section that is missing' do
     before do
       login_with_api(user)
       post '/api/v1/sections/blank/tasks', headers: {
@@ -99,7 +120,7 @@ RSpec.describe '/POST tasks', type: :request do
     end
   end
 
-  context 'When the Authorization header is missing' do
+  context 'when the Authorization header is missing' do
     before do
       post "/api/v1/projects/#{project.id}/tasks", params: {
         task: {
