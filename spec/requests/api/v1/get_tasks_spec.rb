@@ -6,6 +6,10 @@ RSpec.describe '/GET Tasks', type: :request do
 
   context 'When user is authorized' do
     before do
+      # Freeze time to current day
+      Timecop.freeze(Date.today)
+
+      # Create number of tasks from users
       create(:task, project: user.inbox, due_date: Date.today + 1.day)
       create(:task, project: user.inbox, due_date: Date.today)
       create(:task, project: user.inbox, due_date: Date.today - 1.day)
@@ -13,7 +17,13 @@ RSpec.describe '/GET Tasks', type: :request do
 
       3.times { create(:task, project: other_user.inbox) }
 
+      # Login
       login_with_api(user)
+    end
+
+    after do
+      # Unfreeze time
+      Timecop.return
     end
 
     it 'returns all users tasks sorted by date' do
@@ -33,6 +43,22 @@ RSpec.describe '/GET Tasks', type: :request do
       }
 
       expect(response.status).to eq(200)
+    end
+
+    context 'when querying for todays tasks' do
+      it 'returns only tasks from today' do
+        get '/api/v1/tasks', headers: {
+          Authorization: response.headers['Authorization']
+        }, params: {
+          today: true
+        }
+
+        task_dates = json['tasks'].map { |task| task['due_date'].to_date }
+                                  .uniq
+
+        expect(task_dates.length).to eq(1)
+        expect(task_dates[0]).to eq(Date.today)
+      end
     end
   end
 

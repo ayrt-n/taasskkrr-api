@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'shoulda/matchers'
 
 RSpec.describe Task, type: :model do
   context 'validations' do
