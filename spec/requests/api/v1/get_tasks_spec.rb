@@ -6,20 +6,32 @@ RSpec.describe '/GET Tasks', type: :request do
 
   context 'When user is authorized' do
     before do
-      3.times { create(:task, project: user.inbox) }
+      create(:task, project: user.inbox, due_date: Date.today + 1.day)
+      create(:task, project: user.inbox, due_date: Date.today)
+      create(:task, project: user.inbox, due_date: Date.today - 1.day)
+      create(:task, project: user.inbox, due_date: Date.today + 3.day)
+
       3.times { create(:task, project: other_user.inbox) }
 
       login_with_api(user)
+    end
+
+    it 'returns all users tasks sorted by date' do
       get '/api/v1/tasks', headers: {
         Authorization: response.headers['Authorization']
       }
-    end
 
-    it 'returns all users tasks' do
-      expect(json['tasks'].length).to eq(3)
+      due_dates = json['tasks'].map { |task| task['due_date'] }
+
+      expect(json['tasks'].length).to eq(4)
+      expect(due_dates).to eq(due_dates.sort)
     end
 
     it 'returns 200' do
+      get '/api/v1/tasks', headers: {
+        Authorization: response.headers['Authorization']
+      }
+
       expect(response.status).to eq(200)
     end
   end
