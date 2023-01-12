@@ -63,4 +63,12 @@ RSpec.configure do |config|
 
   config.include ApiHelpers
   config.include FactoryBot::Syntax::Methods
+
+  # Include shoulda-matchers
+  Shoulda::Matchers.configure do |config|
+    config.integrate do |with|
+      with.test_framework :rspec
+      with.library :rails
+    end
+  end
 end

@@ -65,5 +65,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 6.0.0'
 end
 
+gem 'shoulda-matchers', group: :test
+
 # LetterOpener for testing mailers in development
 gem 'letter_opener', group: :development
