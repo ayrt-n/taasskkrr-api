@@ -8,6 +8,8 @@ RSpec.describe '/DELETE Sections', type: :request do
 
   context 'When user deletes section belonging to the user' do
     before do
+      2.times { create(:task, project: project, section: section) }
+
       login_with_api(user)
       delete "/api/v1/sections/#{section.id}", headers: {
         Authorization: response.headers['Authorization']
@@ -25,6 +27,11 @@ RSpec.describe '/DELETE Sections', type: :request do
 
     it 'deletes the section' do
       expect(project.sections).not_to exist
+    end
+
+    it 'deletes all of the associated tasks' do
+      section_tasks = Task.where(section_id: section.id)
+      expect(section_tasks).to be_empty
     end
   end
 
