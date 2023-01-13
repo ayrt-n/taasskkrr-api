@@ -29,6 +29,29 @@ RSpec.describe '/POST tasks', type: :request do
     end
   end
 
+  context 'when user creates task for section that belongs to them' do
+    before do
+      login_with_api(user)
+      post "/api/v1/sections/#{section.id}/tasks", headers: {
+        Authorization: response.headers['Authorization']
+      }, params: {
+        task: {
+          title: 'Test Task'
+        }
+      }
+    end
+
+    it 'returns 200' do
+      expect(response.status).to eq(200)
+    end
+
+    it 'adds task to users project' do
+      new_task_id = json['id']
+      user_section_tasks = section.tasks
+      expect(user_section_tasks.ids).to include(new_task_id)
+    end
+  end
+
   context 'when invalid parameters provided' do
     before do
       login_with_api(user)
