@@ -21,7 +21,7 @@ Please note that it may take 30-45 seconds for the Heroku dyno to start up if th
 ### Using Local Machine
 If you would like to run the web app on your local machine you will first need to install [Ruby](https://guides.rubyonrails.org/v5.0/getting_started.html), [Rails](https://guides.rubyonrails.org/v5.0/getting_started.html), and [PostgreSQL](https://medium.com/geekculture/postgresql-rails-and-macos-16248ddcc8ba).
 
-With all of those installed, you will need to clone this repo along with the frontend (https://github.com/ayrt-n/to-do-list-client).
+With all of those installed, you will need to clone this repo along with the frontend (https://github.com/ayrt-n/taasskkrr-api).
 
 Once you have this repo cloned, navigate to the root directory and create and set up the database by running
 
@@ -31,7 +31,7 @@ Once that is finished, you can start the backend API server by running
 
 ```rails s -p 3001```
 
-With the backend going, you can either start making API requests using a service like Postman or curl in the terminal, or start up the React frontend by following the instructions within the associated repo (https://github.com/ayrt-n/to-do-list-client).
+With the backend going, you can either start making API requests using a service like Postman or curl in the terminal, or start up the React frontend by following the instructions within the associated repo (https://github.com/ayrt-n/taasskkrr).
 
 ## Overview
 This project provided a solid opportunity to combine everything that I have learned through The Odin Project. Generally, it was a great opportunity to start building full stack web applications which utilized a Rails backend and React frontend to build beautiful, responsive, and interactive user interfaces with a persistent backend API.
