@@ -12,7 +12,7 @@ This repo is for the Rails backend portion of the project.
 ## Set up
 ### Using Web Browser (Recommended)
 
-The best way to view the project is live on Github at https://ayrt-n.github.io/to-do-list-client/
+The best way to view the project is live on Github at https://github.com/ayrt-n/taasskkrr-api
 
 Please note that it may take 30-45 seconds for the Heroku dyno to start up if the application has been inactive for awhile.
 
@@ -21,7 +21,7 @@ Please note that it may take 30-45 seconds for the Heroku dyno to start up if th
 ### Using Local Machine
 If you would like to run the web app on your local machine you will first need to install [Ruby](https://guides.rubyonrails.org/v5.0/getting_started.html), [Rails](https://guides.rubyonrails.org/v5.0/getting_started.html), and [PostgreSQL](https://medium.com/geekculture/postgresql-rails-and-macos-16248ddcc8ba).
 
-With all of those installed, you will need to clone this repo along with the frontend (https://github.com/ayrt-n/taasskkrr-api).
+With all of those installed, you will need to clone this repo along with the frontend (https://ayrt-n.github.io/to-do-list-client/).
 
 Once you have this repo cloned, navigate to the root directory and create and set up the database by running
 
