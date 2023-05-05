@@ -1,7 +1,7 @@
 # To-Do List Rails API
 
 ## Summary
-After reaching the end of the React section of The Odin Project (https://www.theodinproject.com/), I wanted to take an old JavaScript project that I had worked on and update it to use a Rails JSON API backend and React frontend (https://github.com/ayrt-n/to-do-list-client).
+After reaching the end of the React section of The Odin Project (https://www.theodinproject.com/), I wanted to take an old JavaScript project that I had worked on and update it to use a Rails JSON API backend and React frontend (https://github.com/ayrt-n/taasskkrr).
 
 The application is a to-do list web application, which allows users to create, read, update, and delete projects and associated to-do lists. Through the web application, users can view tasks associated with projects, view all tasks for the current day, or view all upcoming tasks. 
 
@@ -12,7 +12,7 @@ This repo is for the Rails backend portion of the project.
 ## Set up
 ### Using Web Browser (Recommended)
 
-The best way to view the project is live on Github at https://github.com/ayrt-n/taasskkrr-api
+The best way to view the project is live on Github at https://ayrt-n.github.io/taasskkrr/
 
 Please note that it may take 30-45 seconds for the Heroku dyno to start up if the application has been inactive for awhile.
 
@@ -21,7 +21,7 @@ Please note that it may take 30-45 seconds for the Heroku dyno to start up if th
 ### Using Local Machine
 If you would like to run the web app on your local machine you will first need to install [Ruby](https://guides.rubyonrails.org/v5.0/getting_started.html), [Rails](https://guides.rubyonrails.org/v5.0/getting_started.html), and [PostgreSQL](https://medium.com/geekculture/postgresql-rails-and-macos-16248ddcc8ba).
 
-With all of those installed, you will need to clone this repo along with the frontend (https://ayrt-n.github.io/to-do-list-client/).
+With all of those installed, you will need to clone this repo along with the frontend (https://github.com/ayrt-n/taasskkrr).
 
 Once you have this repo cloned, navigate to the root directory and create and set up the database by running
 
